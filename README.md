@@ -89,7 +89,27 @@ let start = moment.now();
 
 ```
 - Enregistrer le fichier. Vérifier que le log de démarrage ``"Started server in ...s"`` apparaît dans le terminal.
+### 4 - Ajouter la librairie Local-storage pour stocker les informations dans le disk
+- Documentation: https://www.npmjs.com/package/node-localstorage
+- Executer la commande ``npm i node-localstorage``
+- Vérifier que la dépendance ``node-localstorage`` est bien créée dans le fichier ``package.json``
+- Ajouter ce code snippet au début du fichier ``server.js``:
 
+```
+if (typeof localStorage === "undefined" || localStorage === null) {
+    var LocalStorage = require('node-localstorage').LocalStorage;
+    localStorage = new LocalStorage('./student-course.db')
+}
+
+localStorage.setItem('name', 'Toolu Xarala')
+console.log("Name: " + localStorage.getItem('name'))
+
+```
+- Enregistrer le fichier. Vérifier que le log de démarrage ``"Name: Toolu Xarala"`` apparaît dans le terminal.
 ## II. Logique métier
+### 1 - Créer le service de gestion des étudiants
+- Créer un dossier ``services`` à la racine du projet
+- Créer le fichier ``student-service.js`` dans le dossier services et ajouter la class ``StudentService``
+- Ajouter une methode de class ``StudentService.add(student)`` qui permet stocker les infomations (``id,name,number``) dans
 ## III. Micro-service/API de gestion des cours
 

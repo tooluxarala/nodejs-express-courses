@@ -37,7 +37,6 @@ license: (ISC) Apache-2.0
   "license": "Apache-2.0"
 }
 ```
-- Vérifier également que le fichier ``package-lock.json`` est bien créée. Ce fichier est généré et gèré par NPM donc pas besoin d'y toucher. Il contient toute la hiérachie des dépendances et doit être commité sur Git.
 - Créer le fichier ``entry point`` ``server.js`` et ajouter le log ``console.log("Hello Express !")``
 - lancer le programme avec ``npm start`` et vérifier que le message ``"Hello Express !"`` apparaît dans le terminal.
 
@@ -51,6 +50,7 @@ license: (ISC) Apache-2.0
   }
 
 ```
+- Vérifier également que le fichier ``package-lock.json`` est bien créée. Ce fichier est généré et gèré par NPM donc pas besoin d'y toucher. Il contient toute la hiérachie des dépendances et doit être commité sur Git.
 - Vérifier que le dossier des dépendances ``node_modules`` est bien créé et contient ``Nodemon``. Ce dossier est créé et gèré par NPM, donc pas besoin d'y toucher. C'est un dossier à ne surtout pas commiter dans Git. 
 - Modifier le start script pour utiliser ``Nodemon`` :
 ```

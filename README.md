@@ -84,6 +84,7 @@ let start = moment.now();
 - Ajouter ce code snippet à la fin du fichier ``server.js``:
 
 ```
+let end = moment.now();
   let startupTimeMilis = end - start
   console.log("Started server in " + (startupTimeMilis / 1000) + "s")
 
@@ -106,10 +107,86 @@ console.log("Name: " + localStorage.getItem('name'))
 
 ```
 - Enregistrer le fichier. Vérifier que le log de démarrage ``"Name: Toolu Xarala"`` apparaît dans le terminal.
+### 5 - Installation de Express
+- Documentation: https://expressjs.com/
+- Executer la commande ``npm i express``
+- Vérifier que la dépendance ``express`` est bien créée dans le fichier ``package.json``
+- Ajouter/Mettre à jour ce code snippet dans le fichier ``server.js``:
+
+```
+const express = require('express')
+const app = express()
+const port = 3000
+
+app.get('/', (req, res) => {
+  res.send('Hello World!')
+})
+
+app.listen(port, () => {
+  console.log(`Express app listening on port ${port}`)
+  let end = moment.now();
+  let startupTimeMilis = end - start
+  console.log("Started Express in " + (startupTimeMilis / 1000) + "s")
+})
+
+```
+- Enregistrer le fichier. Vérifier que le log de démarrage ``"Started Express in ...s"`` apparaît dans le terminal.
 ## II. Logique métier
 ### 1 - Créer le service de gestion des étudiants
 - Créer un dossier ``services`` à la racine du projet
 - Créer le fichier ``student-service.js`` dans le dossier services et ajouter la class ``StudentService``
-- Ajouter une methode de class ``StudentService.add(student)`` qui permet stocker les infomations (``id,name,number``) dans
+- Ajouter une methode de class ``StudentService.add(student)`` qui permet stocker les infomations d'un étudiant (``id,name,number``) dans le ``localStorage``
+- Ajouter une methode de class ``StudentService.get([id or number])`` qui permet de lire les infomations d'un étudiant (``id,name,number``) dans le ``localStorage``
+  - Tester la methode en important la class ``StudentService`` dans `server.js` et ajouter ce snipet après les imports:
+    ```
+    StudentService.add(
+      {
+        id: 1,
+        name: "Pathé NDIAYE",
+        number: "1A-B1"
+      }
+    );
+    console.log("Add/get student: " + StudentService.get(1));
+    console.log("Add/get student: " + StudentService.get("1A-B1"));
+    ```
+  - Verifier que les deux logs apparaît dans le terminal
+- Ajouter une methode de class ``StudentService.update(student)`` qui permet de mettre à jour les infomations d'un étudiant (``id,name,number``) dans le ``localStorage``
+  - Tester la methode en ajoutant ce snipet dans ``server.js``:
+    ```
+    StudentService.update(
+      {
+        id: 1,
+        name: "Ngoné DIENG",
+        number: "1A-B1"
+      }
+    );
+    console.log("Update/get student: " + StudentService.get(1));
+    console.log("Update/get student: " + StudentService.get("1A-B1"));
+    ```
+  - Verifier que les deux logs apparaît dans le terminal
+- Ajouter une methode de class ``StudentService.delete([id or number])`` qui permet de supprimer les infomations d'un étudiant (``id,name,number``) du ``localStorage``
+  - Tester la methode en ajoutant ce snipet dans ``server.js``:
+    ```
+    StudentService.add(
+      {
+        id: 2,
+        name: "Ndofène DIOUF",
+        number: "2A-B2"
+      }
+    );
+    StudentService.add(
+      {
+        id: 3,
+        name: "Lat DIOP",
+        number: "3A-B3"
+      }
+    );
+    StudentService.delete(2);
+    console.log("Delete/get student: " + StudentService.get(2));
+    StudentService.delete("3A-B3");
+    console.log("Delete/get student: " + StudentService.get("3A-B3"));
+    ```
+  - Verifier que les deux logs ``undefined`` apparaît dans le terminal
+  
 ## III. Micro-service/API de gestion des cours
 

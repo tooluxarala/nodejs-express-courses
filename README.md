@@ -134,7 +134,7 @@ app.listen(port, () => {
 ## II. Logique métier
 ### 1 - Créer le service de gestion des étudiants
 - Créer un dossier ``services`` à la racine du projet
-- Créer le fichier ``student-service.js`` dans le dossier services et ajouter la class ``StudentService``
+- Créer le fichier ``student-service.js`` dans le dossier ``services`` et ajouter la class ``StudentService``
 - Ajouter une methode de class ``StudentService.add(student)`` qui permet stocker les infomations d'un étudiant (``id,name,number``) dans le ``localStorage``
 - Ajouter une methode de class ``StudentService.get([id or number])`` qui permet de lire les infomations d'un étudiant (``id,name,number``) dans le ``localStorage``
   - Tester la methode en important la class ``StudentService`` dans `server.js` et ajouter ce snipet après les imports:
@@ -187,6 +187,63 @@ app.listen(port, () => {
     console.log("Delete/get student: " + StudentService.get("3A-B3"));
     ```
   - Verifier que les deux logs ``undefined`` apparaît dans le terminal
-  
+  ### 1 - Créer le service de gestion des cours
+- Créer le fichier ``course-service.js`` dans le dossier ``services`` et ajouter la class ``CourseService``
+- Ajouter une methode de class ``CourseService.add(student)`` qui permet stocker les infomations d'un cours (``id,name,code, credits``) dans le ``localStorage``
+- Ajouter une methode de class ``CourseService.get([id or code])`` qui permet de lire les infomations d'un cours (``id,name,code,credits``) dans le ``localStorage``
+  - Tester la methode en important la class ``CourseService`` dans `server.js` et ajouter ce snipet après les imports:
+    ```
+    CourseService.add(
+      {
+        id: 1,
+        name: "Math",
+        code: "UE1"
+      }
+    );
+    console.log("Add/get course: " + CourseService.get(1));
+    console.log("Add/get course: " + CourseService.get("UE1"));
+    ```
+  - Verifier que les deux logs apparaît dans le terminal
+- Ajouter une methode de class ``CourseService.update(course)`` qui permet de mettre à jour les infomations d'un cours (``id,name,code,credits``) dans le ``localStorage``
+  - Tester la methode en ajoutant ce snipet dans ``server.js``:
+    ```
+    CourseService.update(
+      {
+        id: 1,
+        name: "Math",
+        code: "UE1",
+        credits: 7
+      }
+    );
+    console.log("Update/get student: " + CourseService.get(1));
+    console.log("Update/get student: " + CourseService.get("UE1"));
+    ```
+  - Verifier que les deux logs apparaît dans le terminal
+- Ajouter une methode de class ``CourseService.delete([id or code])`` qui permet de supprimer les infomations d'un cours (``id,name,code,credits``) du ``localStorage``
+  - Tester la methode en ajoutant ce snipet dans ``server.js``:
+    ```
+    CourseService.add(
+      {
+        id: 2,
+        name: "Computer science",
+        code: "UE2",
+        credits: 11
+      }
+    );
+    CourseService.add(
+      {
+        id: 3,
+        name: "English",
+        code: "UE3",
+        credits: 5
+      }
+    );
+    CourseService.delete(2);
+    console.log("Delete/get student: " + StudentService.get(2));
+    CourseService.delete("UE3");
+    console.log("Delete/get student: " + StudentService.get("UE3"));
+    ```
+  - Verifier que les deux logs ``undefined`` apparaît dans le terminal
+
 ## III. Micro-service/API de gestion des cours
 

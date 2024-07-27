@@ -1,16 +1,19 @@
 const moment = require('moment')
+let start = moment.now();
+
+/// IMPORTS
 const StudentService = require('./services/student-service');
 const CourseService = require('./services/course-service');
 const SubscriptionService = require('./services/subscription-service');
-let start = moment.now();
-
-
 const express = require('express')
 const app = express()
 const port = 3000
 
+/// CONSTANTE VALUES
+const numberPattern = "[0-9]"
 
 
+/// TESTS
 StudentService.add({ id: 1, name: 'Pathé NDIAYE', number: '1A-B1' });
 console.log("Add/get student: ", StudentService.get(1));
 console.log("Add/get student: ", StudentService.get("1A-B1"));
@@ -57,17 +60,107 @@ SubscriptionService.add(
   );
   console.log("Add/get subscription: " , SubscriptionService.getByStudent({number: "1A-1B"}));
 
+
+//// REST API
+
+//// JSON serialisation config
+app.use(express.json());
+const jsonHeaderInterceptor =  (req, res, next) => {
+  res.setHeader("Content-Type","application/json")
+  if(req.header("Content-Type") !== "application/json"){
+    res.status(415)
+    .send(new Error("Unsupported media type"));
+  }
+  next()
+}
+app.use(jsonHeaderInterceptor);
+
+//// Logging config
+const logger =  (req, res, next) => {
+  next()
+  moment.locale('en-US');
+  let date = moment().format(moment.defaultFormat);
+  console.log(date + ' - ' + req.method + ' - ' + req.path + ' - ' + res.statusCode)
+}
+app.use(logger);
+
 app.get('/', (req, res) => {
-  res.send('Hello World!')
+  res.send('Hollo Express !')
 })
 
+//// Student endpoints
+app.get('/students', (req, res) => {
+  let students = StudentService.getAll();
+  let response = {
+    status: students.length < 1 ? 404 : 200,
+    body: students.length < 1 ? new Error("Student not found") : students
+  }
+  res.status(response.status)
+  .send(response.body);
+})
+
+app.post('/students', (req, res) => {
+  let student = req.body
+  let savedStudent = StudentService.add(student);
+  let response = {
+    status: savedStudent.id === undefined ? 400 : 201,
+    body: savedStudent.id === undefined ? new Error("Bad request body") : savedStudent
+  }
+  res.status(response.status)
+  .send(response.body);
+})
+
+app.get('/students/:id', (req, res) => {
+  var id = req.params.id.match(numberPattern) ? parseInt(req.params.id) : req.params.id;
+
+  console.log("id: ", id)
+  let student = StudentService.get(id);
+  let response = {
+    status: student === undefined ? 404 : 200,
+    body: student === undefined ? new Error("Student not found") : student
+  }
+  res.status(response.status)
+  .send(response.body);
+})
+
+app.put('/students/:id', (req, res) => {
+  var id = req.params.id.match(numberPattern) ? parseInt(req.params.id) : req.params.id;
+  let student = req.body
+  student.id = id
+
+  let savedStudent = StudentService.update(student);
+  let response = {
+    status: savedStudent.id === undefined ? 400 : 200,
+    body: savedStudent.id === undefined ? new Error("Bad request body") : savedStudent
+  }
+  res.status(response.status)
+  .send(response.body);
+})
+
+app.delete('/students/:id', (req, res) => {
+  var id = req.params.id.match(numberPattern) ? parseInt(req.params.id) : req.params.id;
+
+  console.log("id: ", id)
+  let student = StudentService.get(id);
+  StudentService.delete(id);
+  let response = {
+    status: student === undefined ? 404 : 204,
+    body: student === undefined ? new Error("Student not found") : student
+  }
+  res.status(response.status)
+  .send(response.body);
+})
+
+//// TODO Course endpoints
+
+//// TODO Subscription endpoints
+
+/// SERVER START
 app.listen(port, () => {
-  console.log(`Example app listening on port ${port}`)
+  console.log(`Express app listening on port ${port}`)
   let end = moment.now();
   let startupTimeMilis = end - start
   console.log("Started server in " + (startupTimeMilis / 1000) + "s")
 })
 
-console.log("New log before start !")
-console.log("Hello ExPress !")
 

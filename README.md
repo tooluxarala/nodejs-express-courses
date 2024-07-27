@@ -189,7 +189,7 @@ app.listen(port, () => {
   - Verifier que les deux logs ``undefined`` apparaît dans le terminal
   ### 1 - Créer le service de gestion des cours
 - Créer le fichier ``course-service.js`` dans le dossier ``services`` et ajouter la class ``CourseService``
-- Ajouter une methode de class ``CourseService.add(student)`` qui permet stocker les infomations d'un cours (``id,name,code, credits``) dans le ``localStorage``
+- Ajouter une methode de class ``CourseService.add(course)`` qui permet stocker les infomations d'un cours (``id,name,code, credits``) dans le ``localStorage``
 - Ajouter une methode de class ``CourseService.get([id or code])`` qui permet de lire les infomations d'un cours (``id,name,code,credits``) dans le ``localStorage``
   - Tester la methode en important la class ``CourseService`` dans `server.js` et ajouter ce snipet après les imports:
     ```
@@ -215,8 +215,8 @@ app.listen(port, () => {
         credits: 7
       }
     );
-    console.log("Update/get student: " + CourseService.get(1));
-    console.log("Update/get student: " + CourseService.get("UE1"));
+    console.log("Update/get course: " + CourseService.get(1));
+    console.log("Update/get course: " + CourseService.get("UE1"));
     ```
   - Verifier que les deux logs apparaît dans le terminal
 - Ajouter une methode de class ``CourseService.delete([id or code])`` qui permet de supprimer les infomations d'un cours (``id,name,code,credits``) du ``localStorage``
@@ -239,9 +239,9 @@ app.listen(port, () => {
       }
     );
     CourseService.delete(2);
-    console.log("Delete/get student: " + StudentService.get(2));
+    console.log("Delete/get course: " + CourseService.get(2));
     CourseService.delete("UE3");
-    console.log("Delete/get student: " + StudentService.get("UE3"));
+    console.log("Delete/get course: " + CourseService.get("UE3"));
     ```
   - Verifier que les deux logs ``undefined`` apparaît dans le terminal
 

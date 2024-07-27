@@ -149,7 +149,7 @@ app.listen(port, () => {
     console.log("Add/get student: " + StudentService.get(1));
     console.log("Add/get student: " + StudentService.get("1A-B1"));
     ```
-  - Verifier que les deux logs apparaît dans le terminal
+  - Verifier que les deux logs apparaissent dans le terminal
 - Ajouter une methode de class ``StudentService.update(student)`` qui permet de mettre à jour les infomations d'un étudiant (``id,name,number``) dans le ``localStorage``
   - Tester la methode en ajoutant ce snipet dans ``server.js``:
     ```
@@ -163,7 +163,7 @@ app.listen(port, () => {
     console.log("Update/get student: " + StudentService.get(1));
     console.log("Update/get student: " + StudentService.get("1A-B1"));
     ```
-  - Verifier que les deux logs apparaît dans le terminal
+  - Verifier que les deux logs apparaissent dans le terminal
 - Ajouter une methode de class ``StudentService.delete([id or number])`` qui permet de supprimer les infomations d'un étudiant (``id,name,number``) du ``localStorage``
   - Tester la methode en ajoutant ce snipet dans ``server.js``:
     ```
@@ -186,8 +186,8 @@ app.listen(port, () => {
     StudentService.delete("3A-B3");
     console.log("Delete/get student: " + StudentService.get("3A-B3"));
     ```
-  - Verifier que les deux logs ``undefined`` apparaît dans le terminal
-  ### 1 - Créer le service de gestion des cours
+  - Verifier que les deux logs ``undefined`` apparaissent dans le terminal
+  ### 2 - Créer le service de gestion des cours
 - Créer le fichier ``course-service.js`` dans le dossier ``services`` et ajouter la class ``CourseService``
 - Ajouter une methode de class ``CourseService.add(course)`` qui permet stocker les infomations d'un cours (``id,name,code, credits``) dans le ``localStorage``
 - Ajouter une methode de class ``CourseService.get([id or code])`` qui permet de lire les infomations d'un cours (``id,name,code,credits``) dans le ``localStorage``
@@ -203,7 +203,7 @@ app.listen(port, () => {
     console.log("Add/get course: " + CourseService.get(1));
     console.log("Add/get course: " + CourseService.get("UE1"));
     ```
-  - Verifier que les deux logs apparaît dans le terminal
+  - Verifier que les deux logs apparaissent dans le terminal
 - Ajouter une methode de class ``CourseService.update(course)`` qui permet de mettre à jour les infomations d'un cours (``id,name,code,credits``) dans le ``localStorage``
   - Tester la methode en ajoutant ce snipet dans ``server.js``:
     ```
@@ -218,7 +218,7 @@ app.listen(port, () => {
     console.log("Update/get course: " + CourseService.get(1));
     console.log("Update/get course: " + CourseService.get("UE1"));
     ```
-  - Verifier que les deux logs apparaît dans le terminal
+  - Verifier que les deux logs apparaissent dans le terminal
 - Ajouter une methode de class ``CourseService.delete([id or code])`` qui permet de supprimer les infomations d'un cours (``id,name,code,credits``) du ``localStorage``
   - Tester la methode en ajoutant ce snipet dans ``server.js``:
     ```
@@ -243,7 +243,89 @@ app.listen(port, () => {
     CourseService.delete("UE3");
     console.log("Delete/get course: " + CourseService.get("UE3"));
     ```
-  - Verifier que les deux logs ``undefined`` apparaît dans le terminal
+  - Verifier que les deux logs ``undefined`` apparaissent dans le terminal
+### 3 - Créer le service de gestion des inscriptions aux cours
+- Créer le fichier ``subscription-service.js`` dans le dossier ``services`` et ajouter la class ``SubscriptionService``
+- Ajouter une methode de class ``SubscriptionService.add(subscription)`` qui permet stocker les infomations d'une inscription (``id,student,course,date``) dans le ``localStorage``. Elle doit aussi vérifier les données des etudiants et cours avec les service correspondants ( ``StudentService`` et ``CourseService``)
+- Ajouter une methode de class ``SubscriptionService.getByStudent(student)`` qui permet de récupérer la liste des inscriptions au cours d'un étudiant dans le ``localStorage``
+  - Tester la methode en important la class ``SubscriptionService`` dans `server.js` et ajouter ce snipet après les imports:
+    ```
+    SubscriptionService.add(
+      {
+        id: 1,
+        student: {
+          number: "1A-1B"
+        },
+        course: {
+          code: "UE1"
+        }
+      }
+    );
+    console.log("Add/get subscription: " + SubscriptionService.getByStudent({number: "1A-1B"}));
+    ```
+  - Verifier que le log apparaît dans le terminal
+- Ajouter une methode de class ``SubscriptionService.getByCourse(course)`` qui permet de récupérer la liste des inscriptions d'un cours dans le ``localStorage``
+  - Tester la methode en ajoutant ce snipet dans ``server.js``:
+    ```
+    SubscriptionService.add(
+      {
+        id: 1,
+        student: {
+          number: "1A-1B"
+        },
+        course: {
+          code: "UE1"
+        }
+      }
+    );
+    console.log("Add/get subscription: " + SubscriptionService.getByStudent({code: "UE1"}));
+    ```
+  - Verifier que le log apparaît dans le terminal
+
+- Ajouter une methode de class ``SubscriptionService.update(subscription)`` qui permet de mettre à jour les infomations d'un cours (``id,student,course,date``) dans le ``localStorage``
+  - Tester la methode en ajoutant ce snipet dans ``server.js``:
+    ```
+    SubscriptionService.update(
+     {
+        id: 1,
+        student: {
+          number: "1A-1B"
+        },
+        course: {
+          code: "UE1"
+        },
+        date: "27-07-2024"
+      }
+    );
+    console.log("Update/get subscription: " + SubscriptionService.get(1));
+    ```
+  - Verifier que le log apparaît dans le terminal
+- Ajouter une methode de class ``SubscriptionService.delete([id or code])`` qui permet de supprimer les infomations d'un cours (``id,student,course``) du ``localStorage``
+  - Tester la methode en ajoutant ce snipet dans ``server.js``:
+    ```
+    SubscriptionService.add(
+      {
+        id: 2,
+        name: "Computer science",
+        code: "UE2",
+        credits: 11
+      }
+    );
+    SubscriptionService.add(
+      {
+        id: 3,
+        name: "English",
+        code: "UE3",
+        credits: 5
+      }
+    );
+    SubscriptionService.delete(2);
+    console.log("Delete/get subscription: " + SubscriptionService.get(2));
+    SubscriptionService.delete("UE3");
+    console.log("Delete/get subscription: " + SubscriptionService.get("UE3"));
+    ```
+  - Verifier que les deux logs ``undefined`` apparaissent dans le terminal
+
 
 ## III. Micro-service/API de gestion des cours
 

@@ -327,5 +327,29 @@ app.listen(port, () => {
   - Verifier que les deux logs ``undefined`` apparaissent dans le terminal
 
 
-## III. Micro-service/API de gestion des cours
+## III. Micro-service/API de gestion des cours (devoir maison)
+S'inspirer de l'API des étudiants (student API) pour créer les nouvelles API
+### 1. API REST de gestion des cours
+- Créer un endpoint `POST /courses` qui utilise le `CourseService` pour ajouter un cours dans la liste des cours disponibles
+- Créer un endpoint `GET /courses` qui utilise le `CourseService` pour récupérer la liste des cours disponibles
+- Créer un endpoint `GET /courses/:id` qui utilise le `CourseService` pour récupérer le cours dont l'id est donné en paramètre
+- Créer un endpoint `PUT /courses/:id` qui utilise le `CourseService` pour mettre à jous le cours dont l'id est donné en paramètre
+- Créer un endpoint `DELETE /courses/:id` qui utilise le `CourseService` pour supprimer le cours dont l'id est donné en paramètre
+### 2. API REST de gestion des inscriptions
+- Créer un endpoint `POST /subscriptions` qui utilise le `SubscriptionService` pour inscrire un étudiant à un cours dans la liste des cours disponibles
+- Créer un endpoint `GET /subscriptions/courses/:courseId` qui utilise le `SubscriptionService` pour récupérer la liste des inscriptions à un cours disponibles
+- Créer un endpoint `GET /subscriptions/courses/:courseId/students` qui utilise le `SubscriptionService` pour récupérer la liste des étudiants inscrits à un cours disponibles
 
+- Créer un endpoint `GET /subscriptions/students/:studentId` qui utilise le `SubscriptionService` pour récupérer la liste des inscriptions pour un étudiant dont l'id est donné en paramère
+
+- Créer un endpoint `GET /subscriptions/students/:studentId/courses` qui utilise le `SubscriptionService` pour récupérer la liste des cours disponibles auquels est inscrit un étudiant dont l'id est donné en paramètre
+
+
+- Créer un endpoint `DELETE /subscriptions/:id` qui utilise le `SubscriptionService` pour déinscrire un étudiant à un cours disponibles
+
+### 3. Utilisation d'une base de données SQL
+
+- Remplacer le stockage des données du `StudentService` par une base de données SQLite
+
+- Remplacer le stockage des données du `CourseService` par une base de données SQLite
+- Remplacer le stockage des données du `SubscriptionService` par une base de données SQLite

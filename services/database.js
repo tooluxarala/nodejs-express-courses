@@ -1,23 +1,14 @@
-// if (typeof localStorage === "undefined" || localStorage === null) {
-//     var LocalStorage = require('node-localstorage').LocalStorage;
-//     localStorage = new LocalStorage('./student-course.db')
-// }
-// class Database {
-//     static save(entity, table) {
-//         let courses = JSON.parse(localStorage.getItem('courses') || '[]');
-//         courses.push(entity);
-//         localStorage.setItem('courses', JSON.stringify(courses));
-//     }
 
-//     static get(idOrNumber) {
-//         const courses = JSON.parse(localStorage.getItem('courses') || '[]');
-//         return courses.find(entity => entity.id === idOrNumber || entity.number === idOrNumber);
-//     }
+const sqlite3 = require('sqlite3').verbose();
 
-//     static delete(idOrNumber) {
-//         let courses = JSON.parse(localStorage.getItem('courses') || '[]');
-//         courses = courses.filter(entity => entity.id !== idOrNumber && entity.number !== idOrNumber);
-//         localStorage.setItem('courses', JSON.stringify(courses));
-//     }
-// }
-// module.exports = Database;
+const db = new sqlite3.Database('./student-course.db', (err) => {
+  if (err) {
+    console.error('Could not connect to database', err);
+  } else {
+    console.log('Connected to SQLite database');
+  }
+});
+
+module.exports = db;
+
+

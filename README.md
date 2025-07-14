@@ -112,13 +112,16 @@ console.log("Name: " + localStorage.getItem('name'))
 - Documentation: https://expressjs.com/
 - Executer la commande ``npm i express``
 - Vérifier que la dépendance ``express`` est bien créée dans le fichier ``package.json``
+- Ajouter/Mettre ce code snippet au début du fichier ``server.mjs`` après la partie moment.js:
+  ```
+  import express from 'express'
+  const app = express()
+  const port = 3000
+  ```
+
 - Ajouter/Mettre à jour ce code snippet dans le fichier ``server.mjs``:
 
 ```
-const express = require('express')
-const app = express()
-const port = 3000
-
 app.get('/', (req, res) => {
   res.send('Hello World!')
 })

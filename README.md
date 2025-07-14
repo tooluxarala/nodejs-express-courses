@@ -137,16 +137,24 @@ app.listen(port, () => {
 - Enregistrer le fichier. Vérifier que le log de démarrage ``"Started Express in ...s"`` apparaît dans le terminal.
 
 ### 5 - Installation de Jest
-- Documentation: https://expressjs.com/
+- Documentation: https://jestjs.io/docs/getting-started
 - Executer la commande ``npm i --save-dev jest``
 - Vérifier que la dépendance ``jest`` est bien créée dans le fichier ``package.json``
-- Créer un fichier ``server.test.mjs`` et mettre ce code snippet dedans:
+- Créer un fichier de test unitaire ``server.test.mjs`` et mettre ce code snippet dedans:
 
 ```
 test('adds 1 + 2 to equal 3', () => {
   expect(1 + 2)).toBe(3);
 });
 ```
+- Mettre à jour test script dans le ``package.json`` pour pouvoir lancer les tests:
+```
+  "scripts": {
+      "test": "jest",
+      "start": "nodemon server.mjs"
+  }
+```
+- Lancer les tests unitaires en exécutant la commande ``npm test``
 
 ## II. Logique métier
 ### 1 - Créer le service de gestion des étudiants

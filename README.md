@@ -63,7 +63,7 @@ license: (ISC) Apache-2.0
 - Ajouter le log ``console.log("New log before start !")`` au début du fichier ``server.mjs`` et enregistrer.
 - Vérifier que le programme redémare automatiquement dans le terminal. Le nouveau log doit apparaître dans le terminal.
 
-### 3 - Ajouter la librairie monment.js pour calculer le temps de démarrage du server
+### 3 - Ajouter la librairie monment.mjs pour calculer le temps de démarrage du server
 - Documentation: https://momentjs.com/docs/
 - Executer la commande ``npm install moment``
 - Vérifier que la dépendance ``moment`` est bien créée dans le fichier ``package.json``:
@@ -134,10 +134,10 @@ app.listen(port, () => {
 ## II. Logique métier
 ### 1 - Créer le service de gestion des étudiants
 - Créer un dossier ``services`` à la racine du projet
-- Créer le fichier ``student-service.js`` dans le dossier ``services`` et ajouter la class ``StudentService``
+- Créer le fichier ``student-service.mjs`` dans le dossier ``services`` et ajouter la class ``StudentService``
 - Ajouter une methode de class ``StudentService.add(student)`` qui permet stocker les infomations d'un étudiant (``id,name,number``) dans le ``localStorage``
 - Ajouter une methode de class ``StudentService.get([id or number])`` qui permet de lire les infomations d'un étudiant (``id,name,number``) dans le ``localStorage``
-  - Tester la methode en important la class ``StudentService`` dans `server.js` et ajouter ce snipet après les imports:
+  - Tester la methode en important la class ``StudentService`` dans `server.mjs` et ajouter ce snipet après les imports:
     ```
     StudentService.add(
       {
@@ -151,7 +151,7 @@ app.listen(port, () => {
     ```
   - Verifier que les deux logs apparaît dans le terminal
 - Ajouter une methode de class ``StudentService.update(student)`` qui permet de mettre à jour les infomations d'un étudiant (``id,name,number``) dans le ``localStorage``
-  - Tester la methode en ajoutant ce snipet dans ``server.js``:
+  - Tester la methode en ajoutant ce snipet dans ``server.mjs``:
     ```
     StudentService.update(
       {
@@ -165,7 +165,7 @@ app.listen(port, () => {
     ```
   - Verifier que les deux logs apparaît dans le terminal
 - Ajouter une methode de class ``StudentService.delete([id or number])`` qui permet de supprimer les infomations d'un étudiant (``id,name,number``) du ``localStorage``
-  - Tester la methode en ajoutant ce snipet dans ``server.js``:
+  - Tester la methode en ajoutant ce snipet dans ``server.mjs``:
     ```
     StudentService.add(
       {
@@ -188,10 +188,10 @@ app.listen(port, () => {
     ```
   - Verifier que les deux logs ``undefined`` apparaît dans le terminal
   ### 1 - Créer le service de gestion des cours
-- Créer le fichier ``course-service.js`` dans le dossier ``services`` et ajouter la class ``CourseService``
+- Créer le fichier ``course-service.mjs`` dans le dossier ``services`` et ajouter la class ``CourseService``
 - Ajouter une methode de class ``CourseService.add(course)`` qui permet stocker les infomations d'un cours (``id,name,code, credits``) dans le ``localStorage``
 - Ajouter une methode de class ``CourseService.get([id or code])`` qui permet de lire les infomations d'un cours (``id,name,code,credits``) dans le ``localStorage``
-  - Tester la methode en important la class ``CourseService`` dans `server.js` et ajouter ce snipet après les imports:
+  - Tester la methode en important la class ``CourseService`` dans `server.mjs` et ajouter ce snipet après les imports:
     ```
     CourseService.add(
       {
@@ -205,7 +205,7 @@ app.listen(port, () => {
     ```
   - Verifier que les deux logs apparaît dans le terminal
 - Ajouter une methode de class ``CourseService.update(course)`` qui permet de mettre à jour les infomations d'un cours (``id,name,code,credits``) dans le ``localStorage``
-  - Tester la methode en ajoutant ce snipet dans ``server.js``:
+  - Tester la methode en ajoutant ce snipet dans ``server.mjs``:
     ```
     CourseService.update(
       {
@@ -220,7 +220,7 @@ app.listen(port, () => {
     ```
   - Verifier que les deux logs apparaît dans le terminal
 - Ajouter une methode de class ``CourseService.delete([id or code])`` qui permet de supprimer les infomations d'un cours (``id,name,code,credits``) du ``localStorage``
-  - Tester la methode en ajoutant ce snipet dans ``server.js``:
+  - Tester la methode en ajoutant ce snipet dans ``server.mjs``:
     ```
     CourseService.add(
       {

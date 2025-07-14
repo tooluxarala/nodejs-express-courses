@@ -76,7 +76,7 @@ license: (ISC) Apache-2.0
 - Ajouter ce code snippet au début du fichier ``server.mjs``:
 
 ```
-import moment = from 'moment'
+import moment from 'moment'
 
 let start = moment.now();
 

@@ -9,7 +9,7 @@ Ce projet est une serie d'exercices pour apprendre et se familiariser avec Expre
 package name: nodejs-express-courses 
 version: (1.0.0) 
 description: A Node.js Express course API
-entry point: server.js
+entry point: server.mjs
 test command: 
 git repository: 
 keywords: Node.js, Express,Scolar
@@ -23,10 +23,10 @@ license: (ISC) Apache-2.0
   "name": "odejs-express-courses",
   "version": "1.0.0",
   "description": "A Node.js Express course API",
-  "main": "server.js",
+  "main": "server.mjs",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js"
+    "start": "node server.mjs"
   },
   "keywords": [
     "Node.js",

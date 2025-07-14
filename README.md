@@ -38,7 +38,7 @@ license: (ISC) Apache-2.0
 }
 ```
 - Vérifier également que le fichier ``package-lock.json`` est bien créée. Ce fichier est généré et gèré par NPM donc pas besoin d'y toucher. Il contient toute la hiérachie des dépendances et doit être commité sur Git.
-- Créer le fichier ``entry point`` ``server.js`` et ajouter le log ``console.log("Hello Express !")``
+- Créer le fichier ``entry point`` ``server.mjs`` et ajouter le log ``console.log("Hello Express !")``
 - lancer le programme avec ``npm start`` et vérifier que le message ``"Hello Express !"`` apparaît dans le terminal.
 
 ### 2 - Ajouter la librairie Nodemon en mode developpement pour faire du hot-reloading
@@ -56,11 +56,11 @@ license: (ISC) Apache-2.0
 ```
   "scripts": {
       "test": "echo \"Error: no test specified\" && exit 1",
-      "start": "nodemon server.js"
+      "start": "nodemon server.mjs"
   }
 ```
 - lancer le programme avec ``npm start`` 
-- Ajouter le log ``console.log("New log before start !")`` au début du fichier ``server.js`` et enregistrer.
+- Ajouter le log ``console.log("New log before start !")`` au début du fichier ``server.mjs`` et enregistrer.
 - Vérifier que le programme redémare automatiquement dans le terminal. Le nouveau log doit apparaître dans le terminal.
 
 ### 3 - Ajouter la librairie monment.js pour calculer le temps de démarrage du server
@@ -73,7 +73,7 @@ license: (ISC) Apache-2.0
   }
 
 ```
-- Ajouter ce code snippet au début du fichier ``server.js``:
+- Ajouter ce code snippet au début du fichier ``server.mjs``:
 
 ```
 import moment = from 'moment'
@@ -81,7 +81,7 @@ import moment = from 'moment'
 let start = moment.now();
 
 ```
-- Ajouter ce code snippet à la fin du fichier ``server.js``:
+- Ajouter ce code snippet à la fin du fichier ``server.mjs``:
 
 ```
 let end = moment.now();
@@ -94,7 +94,7 @@ let end = moment.now();
 - Documentation: https://www.npmjs.com/package/node-localstorage
 - Executer la commande ``npm i node-localstorage``
 - Vérifier que la dépendance ``node-localstorage`` est bien créée dans le fichier ``package.json``
-- Ajouter ce code snippet au début du fichier ``server.js``:
+- Ajouter ce code snippet au début du fichier ``server.mjs``:
 
 ```
 if (typeof localStorage === "undefined" || localStorage === null) {
@@ -111,7 +111,7 @@ console.log("Name: " + localStorage.getItem('name'))
 - Documentation: https://expressjs.com/
 - Executer la commande ``npm i express``
 - Vérifier que la dépendance ``express`` est bien créée dans le fichier ``package.json``
-- Ajouter/Mettre à jour ce code snippet dans le fichier ``server.js``:
+- Ajouter/Mettre à jour ce code snippet dans le fichier ``server.mjs``:
 
 ```
 const express = require('express')

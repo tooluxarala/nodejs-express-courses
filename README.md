@@ -97,9 +97,10 @@ let end = moment.now();
 - Ajouter ce code snippet au début du fichier ``server.mjs``:
 
 ```
+import { LocalStorage } from "node-localstorage";
+
 if (typeof localStorage === "undefined" || localStorage === null) {
-    var LocalStorage = require('node-localstorage').LocalStorage;
-    localStorage = new LocalStorage('./student-course.db')
+    global.localStorage = new LocalStorage('./student-course.db')
 }
 
 localStorage.setItem('name', 'Toolu Xarala')

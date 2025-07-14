@@ -76,7 +76,7 @@ license: (ISC) Apache-2.0
 - Ajouter ce code snippet au début du fichier ``server.js``:
 
 ```
-const moment = require('moment')
+import moment = from 'moment'
 
 let start = moment.now();
 

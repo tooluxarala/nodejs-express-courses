@@ -136,26 +136,6 @@ app.listen(port, () => {
 ```
 - Enregistrer le fichier. Vérifier que le log de démarrage ``"Started Express in ...s"`` apparaît dans le terminal.
 
-### 5 - Installation de Jest
-- Documentation: https://jestjs.io/docs/getting-started
-- Executer la commande ``npm i --save-dev jest``
-- Vérifier que la dépendance ``jest`` est bien créée dans le fichier ``package.json``
-- Créer un fichier de test unitaire ``server.test.mjs`` et mettre ce code snippet dedans:
-
-```
-test('adds 1 + 2 to equal 3', () => {
-  expect(1 + 2)).toBe(3);
-});
-```
-- Mettre à jour test script dans le ``package.json`` pour pouvoir lancer les tests:
-```
-  "scripts": {
-      "test": "jest",
-      "start": "nodemon server.mjs"
-  }
-```
-- Lancer les tests unitaires en exécutant la commande ``npm test``
-
 ## II. Logique métier
 ### 1 - Créer le service de gestion des étudiants
 - Créer un dossier ``services`` à la racine du projet
@@ -171,8 +151,8 @@ test('adds 1 + 2 to equal 3', () => {
         number: "1A-B1"
       }
     );
-    console.log("Add/get student: " + StudentService.get(1));
-    console.log("Add/get student: " + StudentService.get("1A-B1"));
+    console.log("Add/get student: " + StudentService.get(1).name);
+    console.log("Add/get student: " + StudentService.get("1A-B1").name);
     ```
   - Verifier que les deux logs apparaît dans le terminal
 - Ajouter une methode de class ``StudentService.update(student)`` qui permet de mettre à jour les infomations d'un étudiant (``id,name,number``) dans le ``localStorage``
@@ -185,8 +165,8 @@ test('adds 1 + 2 to equal 3', () => {
         number: "1A-B1"
       }
     );
-    console.log("Update/get student: " + StudentService.get(1));
-    console.log("Update/get student: " + StudentService.get("1A-B1"));
+    console.log("Update/get student: " + StudentService.get(1).name);
+    console.log("Update/get student: " + StudentService.get("1A-B1").name);
     ```
   - Verifier que les deux logs apparaît dans le terminal
 - Ajouter une methode de class ``StudentService.delete([id or number])`` qui permet de supprimer les infomations d'un étudiant (``id,name,number``) du ``localStorage``
@@ -207,7 +187,7 @@ test('adds 1 + 2 to equal 3', () => {
       }
     );
     StudentService.delete(2);
-    console.log("Delete/get student: " + StudentService.get(2));
+    console.log("Delete/get student: " + StudentService.get(2).name);
     StudentService.delete("3A-B3");
     console.log("Delete/get student: " + StudentService.get("3A-B3"));
     ```
@@ -225,8 +205,8 @@ test('adds 1 + 2 to equal 3', () => {
         code: "UE1"
       }
     );
-    console.log("Add/get course: " + CourseService.get(1));
-    console.log("Add/get course: " + CourseService.get("UE1"));
+    console.log("Add/get course: " + CourseService.get(1).name);
+    console.log("Add/get course: " + CourseService.get("UE1").name);
     ```
   - Verifier que les deux logs apparaît dans le terminal
 - Ajouter une methode de class ``CourseService.update(course)`` qui permet de mettre à jour les infomations d'un cours (``id,name,code,credits``) dans le ``localStorage``
@@ -240,8 +220,8 @@ test('adds 1 + 2 to equal 3', () => {
         credits: 7
       }
     );
-    console.log("Update/get course: " + CourseService.get(1));
-    console.log("Update/get course: " + CourseService.get("UE1"));
+    console.log("Update/get course: " + CourseService.get(1).name);
+    console.log("Update/get course: " + CourseService.get("UE1").name);
     ```
   - Verifier que les deux logs apparaît dans le terminal
 - Ajouter une methode de class ``CourseService.delete([id or code])`` qui permet de supprimer les infomations d'un cours (``id,name,code,credits``) du ``localStorage``
@@ -264,9 +244,9 @@ test('adds 1 + 2 to equal 3', () => {
       }
     );
     CourseService.delete(2);
-    console.log("Delete/get course: " + CourseService.get(2));
+    console.log("Delete/get course: " + CourseService.get(2).name);
     CourseService.delete("UE3");
-    console.log("Delete/get course: " + CourseService.get("UE3"));
+    console.log("Delete/get course: " + CourseService.get("UE3").name);
     ```
   - Verifier que les deux logs ``undefined`` apparaît dans le terminal
 

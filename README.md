@@ -1,6 +1,6 @@
 # Express
 Ce projet est une serie d'exercices pour apprendre et se familiariser avec Express. La documentation d'Express ce trouve à cette addresse: https://expressjs.com/
-- Elle traite l'inscription d'étudiants à des cours dispensés à l'école tel celui sur Node.js
+- Elle traite de l'inscription d'étudiants à des cours dispensés à l'école tels celui sur Node.js
 
 ## I. Initialisation du projet
 ### 1 - Ajouter NPM au projet 
@@ -250,5 +250,117 @@ app.listen(port, () => {
     ```
   - Verifier que les deux logs ``undefined`` apparaît dans le terminal
 
+### 3 - Créer le service de gestion des inscriptions aux cours
+- Créer le fichier ``subscription-service.mjs`` dans le dossier ``services`` et ajouter la class ``SubscriptionService``
+- Ajouter une methode de class ``SubscriptionService.add(subscription)`` qui permet stocker les infomations d'une inscription (``id,student,course,date``) dans le ``localStorage``. Elle doit aussi vérifier les données des etudiants et cours avec les service correspondants ( ``StudentService`` et ``CourseService``)
+- Ajouter une methode de class ``SubscriptionService.getByStudent(student)`` qui permet de récupérer la liste des inscriptions au cours d'un étudiant dans le ``localStorage``
+  - Tester la methode en important la class ``SubscriptionService`` dans `server.mjs` et ajouter ce snipet après les imports:
+    ```
+    SubscriptionService.add(
+      {
+        id: 1,
+        student: {
+          number: "1A-1B"
+        },
+        course: {
+          code: "UE1"
+        }
+      }
+    );
+    console.log("Add/get subscription: " + SubscriptionService.getByStudent({number: "1A-1B"}));
+    ```
+  - Verifier que le log apparaît dans le terminal
+- Ajouter une methode de class ``SubscriptionService.getByCourse(course)`` qui permet de récupérer la liste des inscriptions d'un cours dans le ``localStorage``
+  - Tester la methode en ajoutant ce snipet dans ``server.mjs``:
+    ```
+    SubscriptionService.add(
+      {
+        id: 1,
+        student: {
+          number: "1A-1B"
+        },
+        course: {
+          code: "UE1"
+        }
+      }
+    );
+    console.log("Add/get subscription: " + SubscriptionService.getByStudent({code: "UE1"}));
+    ```
+  - Verifier que le log apparaît dans le terminal
+
+- Ajouter une methode de class ``SubscriptionService.update(subscription)`` qui permet de mettre à jour les infomations d'un cours (``id,student,course,date``) dans le ``localStorage``
+  - Tester la methode en ajoutant ce snipet dans ``server.mjs``:
+    ```
+    SubscriptionService.update(
+     {
+        id: 1,
+        student: {
+          number: "1A-1B"
+        },
+        course: {
+          code: "UE1"
+        },
+        date: "27-07-2024"
+      }
+    );
+    console.log("Update/get subscription: " + SubscriptionService.get(1));
+    ```
+  - Verifier que le log apparaît dans le terminal
+- Ajouter une methode de class ``SubscriptionService.delete([id or code])`` qui permet de supprimer les infomations d'un cours (``id,student,course``) du ``localStorage``
+  - Tester la methode en ajoutant ce snipet dans ``server.mjs``:
+    ```
+    SubscriptionService.add(
+      {
+        id: 2,
+        name: "Computer science",
+        code: "UE2",
+        credits: 11
+      }
+    );
+    SubscriptionService.add(
+      {
+        id: 3,
+        name: "English",
+        code: "UE3",
+        credits: 5
+      }
+    );
+    SubscriptionService.delete(2);
+    console.log("Delete/get subscription: " + SubscriptionService.get(2));
+    SubscriptionService.delete("UE3");
+    console.log("Delete/get subscription: " + SubscriptionService.get("UE3"));
+    ```
+  - Verifier que les deux logs ``undefined`` apparaissent dans le terminal
+
+
 ## III. Micro-service/API de gestion des cours
+### 1. API REST de gestion des cours
+- Créer un endpoint `POST /students` qui utilise le `StudentService` pour ajouter un étudiant dans la liste des étudiants
+- Créer un endpoint `GET /students` qui utilise le `StudentService` pour récupérer la liste des étudiants
+- Créer un endpoint `GET /students/:id` qui utilise le `StudentService` pour récupérer l'étudiant dont l'id est donné en paramètre
+- Créer un endpoint `PUT /students/:id` qui utilise le `StudentService` pour mettre à jours l'étudiant dont l'id est donné en paramètre
+- Créer un endpoint `DELETE /students/:id` qui utilise le `StudentService` pour supprimer l'étudiant dont l'id est donné en paramètre
+
+### 1. API REST de gestion des cours
+- Créer un endpoint `POST /courses` qui utilise le `CourseService` pour ajouter un cours dans la liste des cours disponibles
+- Créer un endpoint `GET /courses` qui utilise le `CourseService` pour récupérer la liste des cours disponibles
+- Créer un endpoint `GET /courses/:id` qui utilise le `CourseService` pour récupérer le cours dont l'id est donné en paramètre
+- Créer un endpoint `PUT /courses/:id` qui utilise le `CourseService` pour mettre à jous le cours dont l'id est donné en paramètre
+- Créer un endpoint `DELETE /courses/:id` qui utilise le `CourseService` pour supprimer le cours dont l'id est donné en paramètre
+
+### 2. API REST de gestion des inscriptions
+- Créer un endpoint `POST /subscriptions` qui utilise le `SubscriptionService` pour inscrire un étudiant à un cours dans la liste des cours disponibles
+- Créer un endpoint `GET /subscriptions/courses/:courseId` qui utilise le `SubscriptionService` pour récupérer la liste des inscriptions à un cours disponibles
+- Créer un endpoint `GET /subscriptions/courses/:courseId/students` qui utilise le `SubscriptionService` pour récupérer la liste des étudiants inscrits à un cours disponibles
+
+- Créer un endpoint `GET /subscriptions/students/:studentId` qui utilise le `SubscriptionService` pour récupérer la liste des inscriptions pour un étudiant dont l'id est donné en paramère
+
+- Créer un endpoint `GET /subscriptions/students/:studentId/courses` qui utilise le `SubscriptionService` pour récupérer la liste des cours disponibles auquels est inscrit un étudiant dont l'id est donné en paramètre
+
+- Créer un endpoint `DELETE /subscriptions/:id` qui utilise le `SubscriptionService` pour déinscrire un étudiant à un cours disponibles
+
+### 3. Utilisation d'une base de données SQL
+- Remplacer le stockage des données du `StudentService` par une base de données SQLite
+- Remplacer le stockage des données du `CourseService` par une base de données SQLite
+- Remplacer le stockage des données du `SubscriptionService` par une base de données SQLite
 

@@ -334,7 +334,7 @@ app.listen(port, () => {
 
 
 ## III. Micro-service/API de gestion des cours
-### 1. API REST de gestion des cours
+### 1. API REST de gestion des étudiants
 - Créer un endpoint `POST /students` qui utilise le `StudentService` pour ajouter un étudiant dans la liste des étudiants
 - Créer un endpoint `GET /students` qui utilise le `StudentService` pour récupérer la liste des étudiants
 - Créer un endpoint `GET /students/:id` qui utilise le `StudentService` pour récupérer l'étudiant dont l'id est donné en paramètre

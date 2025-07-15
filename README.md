@@ -192,7 +192,7 @@ app.listen(port, () => {
     console.log("Delete/get student: " + StudentService.get("3A-B3"));
     ```
   - Verifier que les deux logs ``undefined`` apparaît dans le terminal
-  ### 1 - Créer le service de gestion des cours
+  ### 2 - Créer le service de gestion des cours
 - Créer le fichier ``course-service.mjs`` dans le dossier ``services`` et ajouter la class ``CourseService``
 - Ajouter une methode de class ``CourseService.add(course)`` qui permet stocker les infomations d'un cours (``id,name,code, credits``) dans le ``localStorage``
 - Ajouter une methode de class ``CourseService.get([id or code])`` qui permet de lire les infomations d'un cours (``id,name,code,credits``) dans le ``localStorage``

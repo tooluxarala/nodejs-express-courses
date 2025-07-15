@@ -137,7 +137,7 @@ app.listen(port, () => {
 - Enregistrer le fichier. Vérifier que le log de démarrage ``"Started Express in ...s"`` apparaît dans le terminal.
 
 ## II. Logique métier
-### 1 - Créer le service de gestion des étudiants
+### 1 - Créer le service de gestion des étudiants (CRUD) - Create - Read - Update - Delete
 - Créer un dossier ``services`` à la racine du projet
 - Créer le fichier ``student-service.mjs`` dans le dossier ``services`` et ajouter la class ``StudentService``
 - Ajouter une methode de class ``StudentService.add(student)`` qui permet stocker les infomations d'un étudiant (``id,name,number``) dans le ``localStorage``

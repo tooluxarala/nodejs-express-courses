@@ -20,7 +20,7 @@ license: (ISC) Apache-2.0
 - Vérifier que le fichier ``package.json`` est créé avec les bonnes valeurs
 ```
 {
-  "name": "odejs-express-courses",
+  "name": "nodejs-express-courses",
   "version": "1.0.0",
   "description": "A Node.js Express course API",
   "main": "server.mjs",

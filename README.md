@@ -187,7 +187,7 @@ app.listen(port, () => {
       }
     );
     StudentService.delete(2);
-    console.log("Delete/get student: " + StudentService.get(2).name);
+    console.log("Delete/get student: " + StudentService.get(2));
     StudentService.delete("3A-B3");
     console.log("Delete/get student: " + StudentService.get("3A-B3"));
     ```
@@ -244,9 +244,9 @@ app.listen(port, () => {
       }
     );
     CourseService.delete(2);
-    console.log("Delete/get course: " + CourseService.get(2).name);
+    console.log("Delete/get course: " + CourseService.get(2));
     CourseService.delete("UE3");
-    console.log("Delete/get course: " + CourseService.get("UE3").name);
+    console.log("Delete/get course: " + CourseService.get("UE3"));
     ```
   - Verifier que les deux logs ``undefined`` apparaît dans le terminal
 

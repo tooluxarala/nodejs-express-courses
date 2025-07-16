@@ -264,7 +264,8 @@ app.listen(port, () => {
         },
         course: {
           code: "UE1"
-        }
+        },
+        date: "27-07-2024"
       }
     );
     console.log("Add/get subscription: " + SubscriptionService.getByStudent({number: "1A-1B"}));
@@ -281,7 +282,8 @@ app.listen(port, () => {
         },
         course: {
           code: "UE1"
-        }
+        },
+        date: "27-07-2025"
       }
     );
     console.log("Add/get subscription: " + SubscriptionService.getByStudent({code: "UE1"}));

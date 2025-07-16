@@ -290,7 +290,7 @@ app.listen(port, () => {
     ```
   - Verifier que le log apparaît dans le terminal
 
-- Ajouter une methode de class ``SubscriptionService.update(subscription)`` qui permet de mettre à jour les infomations d'un cours (``id,student,course,date``) dans le ``localStorage``
+- Ajouter une methode de class ``SubscriptionService.update(subscription)`` qui permet de mettre à jour les infomations d'une inscription à un cours (``id,student,course,date``) dans le ``localStorage``
   - Tester la methode en ajoutant ce snipet dans ``server.mjs``:
     ```
     SubscriptionService.update(
@@ -308,7 +308,7 @@ app.listen(port, () => {
     console.log("Update/get subscription: " + SubscriptionService.get(1));
     ```
   - Verifier que le log apparaît dans le terminal
-- Ajouter une methode de class ``SubscriptionService.delete([id or code])`` qui permet de supprimer les infomations d'un cours (``id,student,course``) du ``localStorage``
+- Ajouter une methode de class ``SubscriptionService.delete([id or code])`` qui permet de supprimer (désinscrire) une inscription à un cours (``id,student,course``) du ``localStorage``
   - Tester la methode en ajoutant ce snipet dans ``server.mjs``:
     ```
     SubscriptionService.add(

@@ -9,10 +9,17 @@ if (typeof localStorage === "undefined" || localStorage === null) {
 export default class StudentService {
     static studentsKey = "students"
 
-    static studentsTable = Array(localStorage.getItem(this.studentsKey)) || []
+
+    static getStudentsTable() {
+        let table = localStorage.getItem(this.studentsKey) || "[]"
+        return JSON.parse(table) || []
+    }
+
+    static studentsTable = this.getStudentsTable()
+
 
     static updateStudentTable() {
-        localStorage.setItem(this.studentsKey, this.studentsTable)
+        localStorage.setItem(this.studentsKey, JSON.stringify(this.studentsTable))
     }
 
 
@@ -21,10 +28,14 @@ export default class StudentService {
         this.updateStudentTable()
         return student;
     }
+    static getAll() {
+        return this.studentsTable
+    }
+
 
     static get(idOrNumber) {
         return this.studentsTable.find((student) => {
-            return student.id == idOrNumber || student.number == idOrNumber
+            return student.id === idOrNumber || student.number === idOrNumber
         })
     }
 

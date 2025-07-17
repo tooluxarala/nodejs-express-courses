@@ -9,29 +9,35 @@ if (typeof localStorage === "undefined" || localStorage === null) {
 export default class CourseService {
     static coursesKey = "courses"
 
-    static coursesTable = Array(localStorage.getItem(this.coursesKey)) || []
+    static getCourseTable() {
+        let table = localStorage.getItem(this.coursesTable) || "[]"
+        return JSON.parse(table) || []
+    }
 
-    static updatecourseTable() {
-        localStorage.setItem(this.coursesKey, this.coursesTable)
+    static coursesTable = this.getCourseTable()
+
+
+    static updateCourseTable() {
+        localStorage.setItem(this.coursesKey, JSON.stringify(this.coursesTable))
     }
 
 
     static add(course) {
         this.coursesTable.push(course)
-        this.updatecourseTable()
+        this.updateCourseTable()
         return course;
     }
 
     static get(idOrCode) {
         return this.coursesTable.find((course) => {
-            return course.id == idOrCode || course.code == idOrCode
+            return course.id === idOrCode || course.code === idOrCode
         })
     }
 
     static update(course) {
-        let savedcourse = this.get(course.id) || this.get(course.code)
-        course.id = savedcourse.id
-        course.code = savedcourse.code
+        let savedCourse = this.get(course.id) || this.get(course.code)
+        course.id = savedCourse.id
+        course.code = savedCourse.code
         return this.add(course);
     }
 
@@ -39,6 +45,6 @@ export default class CourseService {
         this.coursesTable = this.coursesTable.filter((course) => {
             return course.id !== idOrCode && course.code !== idOrCode
         })
-        this.updatecourseTable()
+        this.updateCourseTable()
     }
 }

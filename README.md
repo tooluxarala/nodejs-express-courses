@@ -312,17 +312,25 @@ app.listen(port, () => {
     SubscriptionService.add(
       {
         id: 2,
-        name: "Computer science",
-        code: "UE2",
-        credits: 11
+        student: {
+          number: "2A-2B"
+        },
+        course: {
+          code: "UE2"
+        },
+        date: "17-07-2025"
       }
     );
     SubscriptionService.add(
       {
         id: 3,
-        name: "English",
-        code: "UE3",
-        credits: 5
+        student: {
+          number: "3A-3B"
+        },
+        course: {
+          code: "UE3"
+        },
+        date: "07-07-2025"
       }
     );
     SubscriptionService.delete(2);
